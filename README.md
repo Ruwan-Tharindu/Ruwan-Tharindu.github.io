@@ -1,2 +1,0 @@
-# Ruwan-Tharindu.github.io
-
