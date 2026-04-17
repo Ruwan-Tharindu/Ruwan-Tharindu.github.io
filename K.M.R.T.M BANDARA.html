@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ruwan Tharindu | Full-Stack Developer & Data Science Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#080c10;--bg2:#0d1117;--bg3:#111820;--blue:#58a6ff;--green:#3fb950;--teal:#39d0c4;--purple:#bc8cff;--text:#e6edf3;--muted:#7d8590;--border:rgba(88,166,255,0.15);}
+[data-theme="light"]{--bg:#f0f4f8;--bg2:#ffffff;--bg3:#e8edf2;--blue:#0969da;--green:#1a7f37;--teal:#0a8070;--purple:#8250df;--text:#1c2128;--muted:#57606a;--border:rgba(9,105,218,0.2);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;transition:background 0.4s,color 0.4s;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.theme-toggle{position:fixed;top:24px;right:60px;z-index:200;background:var(--bg2);border:0.5px solid var(--border);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all 0.3s;}
+.theme-toggle:hover{border-color:var(--blue);transform:scale(1.1);}
+.cursor{width:8px;height:8px;background:var(--blue);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform 0.1s;}
+.cursor-ring{width:32px;height:32px;border:1px solid rgba(88,166,255,0.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:all 0.15s ease;}
+nav{position:fixed;left:0;top:0;height:100vh;width:64px;background:rgba(13,17,23,0.88);backdrop-filter:blur(16px);border-right:0.5px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:100;}
+[data-theme="light"] nav{background:rgba(240,244,248,0.88);}
+nav .logo{position:absolute;top:24px;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--blue);}
+nav a{color:var(--muted);text-decoration:none;font-size:10px;font-family:'DM Mono',monospace;writing-mode:vertical-rl;letter-spacing:0.15em;transition:color 0.3s;padding:8px 0;}
+nav a:hover,nav a.active{color:var(--blue);}
+.email-side{position:fixed;right:20px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.12em;z-index:100;}
+.email-side a{color:var(--muted);text-decoration:none;transition:color 0.3s;}
+.email-side a:hover{color:var(--blue);}
+.email-side::after{content:'';display:block;width:1px;height:60px;background:var(--muted);margin:12px auto 0;}
+main{margin-left:64px;margin-right:44px;position:relative;z-index:1;}
+section{min-height:100vh;display:flex;align-items:center;padding:80px 60px;}
+
+/* HERO */
+.hero-content{max-width:860px;}
+.hero-tag{font-family:'DM Mono',monospace;font-size:13px;color:var(--blue);margin-bottom:20px;opacity:0;animation:fadeUp 0.6s 0.2s forwards;}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(44px,6.5vw,84px);font-weight:800;line-height:1.0;margin-bottom:16px;opacity:0;animation:fadeUp 0.6s 0.4s forwards;}
+.hero-name .outline{color:transparent;-webkit-text-stroke:2px var(--blue);}
+.typing-wrap{font-size:clamp(16px,2.2vw,26px);color:var(--muted);font-weight:300;margin-bottom:28px;opacity:0;animation:fadeUp 0.6s 0.6s forwards;min-height:40px;}
+#typed-text{color:var(--teal);font-weight:500;}
+.cursor-blink{display:inline-block;width:2px;height:0.9em;background:var(--teal);margin-left:2px;animation:blink 0.8s infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-desc{font-size:15px;color:var(--muted);line-height:1.9;max-width:580px;margin-bottom:44px;opacity:0;animation:fadeUp 0.6s 0.8s forwards;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s 1s forwards;}
+.btn-primary{padding:13px 30px;background:transparent;border:1px solid var(--blue);color:var(--blue);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;cursor:pointer;text-decoration:none;transition:all 0.3s;position:relative;overflow:hidden;display:inline-block;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--blue);transform:translateX(-100%);transition:transform 0.3s;}
+.btn-primary:hover{color:var(--bg);}.btn-primary:hover::before{transform:translateX(0);}
+.btn-primary span{position:relative;z-index:1;}
+.btn-secondary{padding:13px 30px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;cursor:pointer;text-decoration:none;transition:all 0.3s;display:inline-block;}
+.btn-secondary:hover{border-color:var(--green);color:var(--green);}
+
+/* SECTION HEADERS */
+.sec-header{margin-bottom:52px;}
+.sec-num{font-family:'DM Mono',monospace;font-size:13px;color:var(--blue);margin-bottom:6px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,40px);font-weight:700;}
+.sec-title span{color:var(--blue);}
+.sec-line{width:80px;height:1px;background:linear-gradient(90deg,var(--blue),transparent);margin-top:14px;}
+
+/* ABOUT */
+#about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:72px;align-items:center;width:100%;}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:16px;font-size:15px;}
+.about-text p b{color:var(--text);}
+.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
+.fact{background:var(--bg3);border:0.5px solid var(--border);padding:13px;border-radius:4px;}
+.fact-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--blue);margin-bottom:4px;letter-spacing:0.1em;}
+.fact-val{font-size:12px;color:var(--text);}
+.about-photo-wrap{position:relative;}
+.photo-frame{width:100%;aspect-ratio:3/4;border-radius:4px;position:relative;overflow:hidden;border:0.5px solid var(--border);background:var(--bg3);}
+.photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer;transition:background 0.3s;}
+.photo-placeholder:hover{background:rgba(88,166,255,0.05);}
+.upload-icon{font-size:36px;opacity:0.3;}
+.upload-text{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.7;}
+.upload-btn-ui{padding:7px 18px;border:0.5px solid var(--blue);color:var(--blue);font-family:'DM Mono',monospace;font-size:11px;border-radius:2px;cursor:pointer;background:transparent;transition:all 0.3s;}
+.upload-btn-ui:hover{background:var(--blue);color:var(--bg);}
+.photo-frame::after{content:'';position:absolute;top:12px;left:12px;right:-12px;bottom:-12px;border:1px solid var(--blue);border-radius:4px;z-index:-1;opacity:0.2;}
+#photo-input{display:none;}
+
+/* SKILLS */
+#skills{flex-direction:column;align-items:flex-start;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;}
+.skill-card{background:var(--bg2);border:0.5px solid var(--border);padding:22px;border-radius:4px;transition:all 0.3s;}
+.skill-card:hover{border-color:var(--blue);transform:translateY(-4px);background:var(--bg3);}
+.skill-icon{font-size:20px;margin-bottom:10px;}
+.skill-name{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--text);margin-bottom:10px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;border:0.5px solid var(--border);color:var(--muted);border-radius:2px;transition:all 0.2s;}
+.skill-card:hover .tag{border-color:rgba(88,166,255,0.3);color:var(--blue);}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2);flex-direction:column;align-items:flex-start;}
+.exp-timeline{display:flex;flex-direction:column;gap:0;width:100%;position:relative;}
+.exp-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--blue),var(--green),var(--teal));opacity:0.3;}
+.exp-card{padding:28px 32px;border-left:2px solid transparent;transition:all 0.3s;position:relative;margin-bottom:8px;}
+.exp-card:hover{border-left-color:var(--blue);background:var(--bg3);border-radius:0 8px 8px 0;}
+.exp-dot{position:absolute;left:-7px;top:32px;width:12px;height:12px;border-radius:50%;border:2px solid var(--blue);background:var(--bg2);}
+.exp-card:hover .exp-dot{background:var(--blue);}
+.exp-badge{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+.badge-intern{background:rgba(88,166,255,0.1);color:var(--blue);border:0.5px solid rgba(88,166,255,0.3);}
+.badge-work{background:rgba(63,185,80,0.1);color:var(--green);border:0.5px solid rgba(63,185,80,0.3);}
+.badge-training{background:rgba(57,208,196,0.1);color:var(--teal);border:0.5px solid rgba(57,208,196,0.3);}
+.exp-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text);margin-bottom:3px;}
+.exp-org{font-family:'DM Mono',monospace;font-size:12px;color:var(--blue);margin-bottom:5px;}
+.exp-date{font-size:11px;color:var(--muted);margin-bottom:12px;}
+.exp-points{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.exp-points li{font-size:13px;color:var(--muted);line-height:1.6;padding-left:16px;position:relative;}
+.exp-points li::before{content:'▸';position:absolute;left:0;color:var(--blue);font-size:10px;top:2px;}
+
+/* PROJECTS */
+#projects{flex-direction:column;align-items:flex-start;}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;width:100%;}
+.proj-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:4px;overflow:hidden;transition:all 0.3s;}
+.proj-card:hover{transform:translateY(-6px);border-color:rgba(88,166,255,0.35);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.proj-top-bar{height:3px;background:linear-gradient(90deg,var(--blue),var(--green));transform:scaleX(0);transition:transform 0.4s;transform-origin:left;}
+.proj-card:hover .proj-top-bar{transform:scaleX(1);}
+.proj-img{width:100%;height:160px;background:var(--bg3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.proj-img-letter{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;color:var(--blue);opacity:0.1;}
+.proj-img-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--bg2) 100%);}
+.proj-body{padding:22px;}
+.proj-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.proj-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--blue);opacity:0.6;}
+.proj-lang{font-family:'DM Mono',monospace;font-size:10px;padding:2px 8px;border-radius:10px;}
+.lang-ts{background:rgba(49,120,198,0.15);color:#3178C6;border:0.5px solid rgba(49,120,198,0.3);}
+.lang-php{background:rgba(119,123,180,0.15);color:#777BB4;border:0.5px solid rgba(119,123,180,0.3);}
+.lang-html{background:rgba(227,79,38,0.15);color:#E34F26;border:0.5px solid rgba(227,79,38,0.3);}
+.lang-private{background:rgba(240,136,62,0.15);color:#f0883e;border:0.5px solid rgba(240,136,62,0.3);}
+.proj-name{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:var(--text);margin-bottom:8px;}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+.proj-tech{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;}
+.proj-actions{display:flex;gap:10px;align-items:center;}
+.proj-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;display:flex;align-items:center;gap:4px;}
+.proj-link:hover{color:var(--green);}
+.proj-soon{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);border:0.5px solid var(--green);padding:3px 10px;border-radius:20px;}
+.proj-private{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:10px;color:#f0883e;border:0.5px solid rgba(240,136,62,0.4);padding:3px 10px;border-radius:20px;}
+
+/* EDUCATION */
+#education{background:var(--bg2);flex-direction:column;align-items:flex-start;}
+.edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;width:100%;}
+.edu-card{background:var(--bg3);border:0.5px solid var(--border);padding:20px;border-radius:4px;transition:all 0.3s;border-top:2px solid transparent;}
+.edu-card:hover{border-top-color:var(--blue);transform:translateY(-3px);}
+.edu-icon{font-size:20px;margin-bottom:8px;}
+.edu-degree{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--text);margin-bottom:4px;line-height:1.4;}
+.edu-org{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);margin-bottom:4px;}
+.edu-year{font-size:11px;color:var(--muted);}
+
+/* CONTACT */
+#contact{background:var(--bg2);justify-content:center;text-align:center;flex-direction:column;}
+.contact-sub{font-family:'DM Mono',monospace;font-size:13px;color:var(--blue);margin-bottom:14px;}
+.contact-title{font-family:'Syne',sans-serif;font-size:clamp(30px,5vw,52px);font-weight:800;margin-bottom:20px;}
+.contact-desc{color:var(--muted);max-width:480px;line-height:1.8;margin:0 auto 40px;font-size:15px;}
+.contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.contact-link{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);text-decoration:none;transition:all 0.3s;padding:12px 20px;border:0.5px solid var(--border);}
+.contact-link:hover{color:var(--blue);border-color:var(--blue);transform:translateY(-2px);}
+
+footer{margin-left:64px;padding:24px 60px;border-top:0.5px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(26px);transition:all 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){main{margin-left:0;margin-right:0;}nav{display:none;}.email-side{display:none;}section{padding:60px 20px;}.about-grid,.proj-grid,.skills-grid,.edu-grid{grid-template-columns:1fr;}.theme-toggle{right:16px;}}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<button class="theme-toggle" id="themeToggle">🌙</button>
+
+<nav>
+  <span class="logo">RT</span>
+  <a href="#hero" class="active">Home</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Exp</a>
+  <a href="#projects">Work</a>
+  <a href="#education">Edu</a>
+  <a href="#contact">Contact</a>
+</nav>
+<div class="email-side"><a href="mailto:tharindubandara943@gmail.com">tharindubandara943@gmail.com</a></div>
+
+<main>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-tag">// hello world — welcome to my portfolio</p>
+    <h1 class="hero-name">Ruwan<br/><span class="outline">Tharindu.</span></h1>
+    <div class="typing-wrap">I'm a <span id="typed-text"></span><span class="cursor-blink"></span></div>
+    <p class="hero-desc">Innovative Full-Stack Developer & Data Science Specialist from Sri Lanka 🇱🇰. Building scalable digital solutions with React, TypeScript, and Supabase — for both local and global markets.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary"><span>View My Work</span></a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="sec-header">
+        <p class="sec-num">01.</p>
+        <h2 class="sec-title">About <span>Me</span></h2>
+        <div class="sec-line"></div>
+      </div>
+      <p>I'm <b>K.M.R.T.M. Bandara</b> — a passionate Full-Stack Developer and Data Science Specialist from Hendeniya, Peradeniya, Sri Lanka.</p>
+      <p>Currently completing my <b>Pearson BTEC HND in Digital Technologies (Software Development)</b> at SLT-Mobitel Nebula Institute of Technology. I specialize in building real-world applications using modern tech stacks including <b>React, TypeScript, and Supabase</b>.</p>
+      <p>Recently completed a <b>Software Development Internship at Sri Lanka Telecom PLC (SLT Head Office)</b>, gaining hands-on experience with enterprise-level development environments and cross-functional team collaboration.</p>
+      <div class="about-facts">
+        <div class="fact"><div class="fact-label">LOCATION</div><div class="fact-val">Peradeniya, Sri Lanka 🇱🇰</div></div>
+        <div class="fact"><div class="fact-label">EMAIL</div><div class="fact-val">tharindubandara943@gmail.com</div></div>
+        <div class="fact"><div class="fact-label">PHONE</div><div class="fact-val">075-4129622</div></div>
+        <div class="fact"><div class="fact-label">GITHUB</div><div class="fact-val">github.com/Ruwan-Tharindu</div></div>
+        <div class="fact"><div class="fact-label">SPECIALIZATION</div><div class="fact-val">Full-Stack & Data Science</div></div>
+        <div class="fact"><div class="fact-label">LANGUAGES</div><div class="fact-val">English • Sinhala</div></div>
+      </div>
+    </div>
+    <div class="about-photo-wrap reveal">
+      <div class="photo-frame" id="photoFrame">
+        <div class="photo-placeholder" onclick="document.getElementById('photo-input').click()">
+          <div class="upload-icon">📸</div>
+          <div class="upload-text">Oyage photo eka<br/>me ethata add karanna</div>
+          <button class="upload-btn-ui" onclick="event.stopPropagation();document.getElementById('photo-input').click()">Upload Photo</button>
+        </div>
+      </div>
+      <input type="file" id="photo-input" accept="image/*"/>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div style="width:100%">
+    <div class="sec-header reveal">
+      <p class="sec-num">02.</p>
+      <h2 class="sec-title">Tech <span>Stack</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚛️</div>
+        <div class="skill-name">Frontend</div>
+        <div class="skill-tags"><span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Tailwind CSS</span><span class="tag">JavaScript</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-name">Backend & Database</div>
+        <div class="skill-tags"><span class="tag">Node.js</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Supabase</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-name">Tools & Platforms</div>
+        <div class="skill-tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Vite</span><span class="tag">Vercel</span><span class="tag">XAMPP</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔬</div>
+        <div class="skill-name">Data & AI</div>
+        <div class="skill-tags"><span class="tag">Data Analysis</span><span class="tag">Data Science</span><span class="tag">Python</span><span class="tag">MS Excel</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">Design & Media</div>
+        <div class="skill-tags"><span class="tag">UI/UX Design</span><span class="tag">Graphic Design</span><span class="tag">Video Editing</span><span class="tag">Digital Marketing</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔐</div>
+        <div class="skill-name">Security & More</div>
+        <div class="skill-tags"><span class="tag">Cyber Security</span><span class="tag">Ethical Hacking</span><span class="tag">MS Office Suite</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div style="width:100%">
+    <div class="sec-header reveal">
+      <p class="sec-num">03.</p>
+      <h2 class="sec-title">Professional <span>Experience</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-card reveal">
+        <div class="exp-dot"></div>
+        <span class="exp-badge badge-intern">🏢 Internship</span>
+        <div class="exp-title">Software Development Intern</div>
+        <div class="exp-org">Sri Lanka Telecom PLC — SLT Head Office</div>
+        <div class="exp-date">November 2025 – April 2026 (6 Months)</div>
+        <ul class="exp-points">
+          <li>Completed structured internship in the Software Development division at SLT Head Office</li>
+          <li>Participated in full software development lifecycle: requirements gathering, design, coding & testing</li>
+          <li>Collaborated with cross-functional teams to deliver internal IT solutions and process improvements</li>
+          <li>Gained enterprise-level experience with version control and corporate IT infrastructure</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-dot"></div>
+        <span class="exp-badge badge-work">💼 Full-time</span>
+        <div class="exp-title">Data Analyst</div>
+        <div class="exp-org">Proboda Vitharana Enterprise (PVT) LTD</div>
+        <div class="exp-date">December 2022 – April 2025 (2 Years 5 Months)</div>
+        <ul class="exp-points">
+          <li>Managed, cleaned, and analyzed large volumes of business and sales data using Microsoft Excel</li>
+          <li>Performed data analysis to support management decision-making and strategic planning</li>
+          <li>Streamlined operational reporting workflows for promotional and event management activities</li>
+          <li>Delivered accurate, timely reports contributing to improved sales tracking and business efficiency</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-dot"></div>
+        <span class="exp-badge badge-training">🎓 Vocational Training</span>
+        <div class="exp-title">Computer Operator</div>
+        <div class="exp-org">Sri Lanka Telecom PLC</div>
+        <div class="exp-date">August 2023 – February 2024 (6 Months)</div>
+        <ul class="exp-points">
+          <li>Completed structured vocational training in computer operations and troubleshooting</li>
+          <li>Gained hands-on experience in corporate IT environments, system maintenance and hardware/software support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div style="width:100%">
+    <div class="sec-header reveal">
+      <p class="sec-num">04.</p>
+      <h2 class="sec-title">Featured <span>Projects</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-top-bar"></div>
+        <div class="proj-img"><div class="proj-img-letter">QB</div><div class="proj-img-overlay"></div></div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">01 / Featured</span><span class="proj-lang lang-ts">TypeScript</span></div>
+          <div class="proj-name">QuickBus (LankaBus)</div>
+          <div class="proj-desc">Interactive web application for local bus seat bookings in Sri Lanka. Features real-time seat availability, route management, and a responsive mobile-friendly interface.</div>
+          <div class="proj-tech"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Tailwind</span></div>
+          <div class="proj-actions"><a href="https://github.com/Ruwan-Tharindu/QuickBus-App" class="proj-link" target="_blank">→ GitHub</a></div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top-bar"></div>
+        <div class="proj-img"><div class="proj-img-letter">IT</div><div class="proj-img-overlay"></div></div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">02 / Featured</span><span class="proj-lang lang-private">🔒 Private</span></div>
+          <div class="proj-name">IT Lifecycle Manager</div>
+          <div class="proj-desc">Enterprise-grade IT remarketing and sustainability platform for the German corporate sector. Features secure role-based access control, asset lifecycle tracking, and automated workflow management.</div>
+          <div class="proj-tech"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Supabase</span></div>
+          <div class="proj-actions"><span class="proj-private">🔒 Private Repository</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top-bar"></div>
+        <div class="proj-img"><div class="proj-img-letter">TE</div><div class="proj-img-overlay"></div></div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">03 / Featured</span><span class="proj-lang lang-php">PHP</span></div>
+          <div class="proj-name">TravelEase TMS</div>
+          <div class="proj-desc">Comprehensive Popular Destination Pointing and Hotel Booking System for the Sri Lankan tourism industry, with responsive frontend technologies.</div>
+          <div class="proj-tech"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
+          <div class="proj-actions"><a href="https://github.com/Ruwan-Tharindu/TRAVELEASE-TMS" class="proj-link" target="_blank">→ GitHub</a></div>
+        </div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top-bar"></div>
+        <div class="proj-img"><div class="proj-img-letter">NP</div><div class="proj-img-overlay"></div></div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">04 / Coming Soon</span><span class="proj-lang lang-ts">TypeScript</span></div>
+          <div class="proj-name">New Web Project 🚧</div>
+          <div class="proj-desc">Something exciting is in the works. A new scalable web application currently in early development. Stay tuned!</div>
+          <div class="proj-tech"><span class="tag">React</span><span class="tag">TypeScript</span></div>
+          <div class="proj-actions"><span class="proj-soon">🚧 In Development</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div style="width:100%">
+    <div class="sec-header reveal">
+      <p class="sec-num">05.</p>
+      <h2 class="sec-title">Education & <span>Certifications</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal"><div class="edu-icon">🎓</div><div class="edu-degree">Pearson BTEC HND — Digital Technologies (Software Development)</div><div class="edu-org">SLT-Mobitel Nebula Institute of Technology</div><div class="edu-year">Current</div></div>
+      <div class="edu-card reveal"><div class="edu-icon">🔐</div><div class="edu-degree">Advanced Certificate in Cyber Security & Ethical Hacking</div><div class="edu-org">NextGen Campus</div><div class="edu-year">2021</div></div>
+      <div class="edu-card reveal"><div class="edu-icon">🐍</div><div class="edu-degree">Python for Beginners</div><div class="edu-org">CODL — University of Moratuwa, Sri Lanka</div><div class="edu-year">Certificate</div></div>
+      <div class="edu-card reveal"><div class="edu-icon">💻</div><div class="edu-degree">Certificate in Applied Information Technology (CAIT)</div><div class="edu-org">Sri Lanka Telecom Training Centre</div><div class="edu-year">Certificate</div></div>
+      <div class="edu-card reveal"><div class="edu-icon">📊</div><div class="edu-degree">MS Office Basic & Advanced Level</div><div class="edu-org">Getambe Nenasala Centre for Information Technology</div><div class="edu-year">Certificate</div></div>
+      <div class="edu-card reveal"><div class="edu-icon">🗣️</div><div class="edu-degree">Diploma in English</div><div class="edu-org">British Way English Academy, Kandy</div><div class="edu-year">2020</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="contact-sub reveal">// what's next?</p>
+  <h2 class="contact-title reveal">Get In <span style="color:var(--blue)">Touch</span></h2>
+  <p class="contact-desc reveal">Open to new opportunities, collaborations, and exciting projects. Let's build something amazing together for Sri Lanka and beyond! 🌏</p>
+  <div class="contact-links reveal">
+    <a href="mailto:tharindubandara943@gmail.com" class="contact-link">📧 Email Me</a>
+    <a href="https://github.com/Ruwan-Tharindu" class="contact-link" target="_blank">🐙 GitHub</a>
+    <a href="tel:0754129622" class="contact-link">📱 075-4129622</a>
+  </div>
+</section>
+</main>
+
+<footer><p>Designed & Built by <span style="color:var(--blue)">Ruwan Tharindu</span> · 2026</p></footer>
+
+<script>
+// PARTICLES
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+let W=canvas.width=window.innerWidth,H=canvas.height=window.innerHeight;
+window.addEventListener('resize',()=>{W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;});
+const pts=Array.from({length:110},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+0.3,dx:(Math.random()-0.5)*0.25,dy:(Math.random()-0.5)*0.25,a:Math.random()*0.4+0.08}));
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  const dark=document.documentElement.getAttribute('data-theme')==='dark';
+  pts.forEach(p=>{
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=dark?`rgba(88,166,255,${p.a})`:`rgba(9,105,218,${p.a*0.5})`;
+    ctx.fill();p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>W)p.dx*=-1;if(p.y<0||p.y>H)p.dy*=-1;
+  });
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+    const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<90){ctx.beginPath();ctx.strokeStyle=dark?`rgba(88,166,255,${0.04*(1-d/90)})`:`rgba(9,105,218,${0.03*(1-d/90)})`;ctx.lineWidth=0.5;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();}
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// TYPING
+const words=['Full-Stack Developer 🚀','Data Science Specialist 📊','React & TypeScript Expert ⚛️','Problem Solver 💡','Sri Lankan Developer 🇱🇰'];
+let wi=0,ci=0,del=false;
+const el=document.getElementById('typed-text');
+function type(){
+  const w=words[wi];
+  if(!del){el.textContent=w.slice(0,++ci);if(ci===w.length){setTimeout(()=>{del=true;setTimeout(type,50);},2000);return;}}
+  else{el.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;}}
+  setTimeout(type,del?40:85);
+}
+setTimeout(type,1200);
+
+// THEME
+const tb=document.getElementById('themeToggle');
+tb.addEventListener('click',()=>{
+  const t=document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme',t==='dark'?'light':'dark');
+  tb.textContent=t==='dark'?'☀️':'🌙';
+});
+
+// CURSOR
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{
+  cur.style.left=e.clientX-4+'px';cur.style.top=e.clientY-4+'px';
+  ring.style.left=e.clientX-16+'px';ring.style.top=e.clientY-16+'px';
+});
+document.querySelectorAll('a,button').forEach(e=>{
+  e.addEventListener('mouseenter',()=>{ring.style.transform='scale(1.6)';ring.style.borderColor='rgba(88,166,255,0.8)';});
+  e.addEventListener('mouseleave',()=>{ring.style.transform='scale(1)';ring.style.borderColor='rgba(88,166,255,0.4)';});
+});
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);});},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+// NAV ACTIVE
+const secs=document.querySelectorAll('section'),navs=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let curr='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)curr=s.id;});
+  navs.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+curr)l.classList.add('active');});
+});
+
+// PHOTO UPLOAD
+document.getElementById('photo-input').addEventListener('change',function(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    document.getElementById('photoFrame').innerHTML=`<img src="${ev.target.result}" alt="Ruwan Tharindu" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;"/><div style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.75);padding:4px 10px;border-radius:2px;font-family:'DM Mono',monospace;font-size:10px;color:#58a6ff;cursor:pointer;" onclick="document.getElementById('photo-input').click()">Change Photo</div>`;
+  };
+  r.readAsDataURL(f);
+});
+</script>
+</body>
+</html>
